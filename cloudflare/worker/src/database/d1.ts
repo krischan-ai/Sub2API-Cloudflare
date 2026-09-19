@@ -2,7 +2,7 @@ import type { D1Database } from "../types/d1.ts";
 import type { DatabaseAdapter, DatabaseStatement } from "./adapter.ts";
 
 class D1StatementAdapter implements DatabaseStatement {
-    constructor(private readonly statement: ReturnType<D1Database["prepare"]>) {}
+    constructor(private statement: ReturnType<D1Database["prepare"]>) {}
 
     bind(...values: any[]): DatabaseStatement {
         this.statement = this.statement.bind(...values);

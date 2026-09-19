@@ -1,4 +1,5 @@
 import { D1Adapter } from "./d1.ts";
+import { PostgresAdapter } from "./postgres.ts";
 import type { DatabaseAdapter } from "./adapter.ts";
 
 /**
@@ -17,7 +18,10 @@ export function createDatabase(env: DatabaseEnv): DatabaseAdapter {
     const driver = env.DATABASE_DRIVER?.toLowerCase();
 
     if (driver === "postgres") {
-        throw new Error("PostgreSQL adapter is not enabled yet. Configure postgres adapter in the next migration step.");
+        if (!env.DATABASE_URL) {
+            throw new Error("DATABASE_URL is required when DATABASE_DRIVER=postgres");
+        }
+        return new PostgresAdapter(env.DATABASE_URL);
     }
 
     if (!env.DB) {

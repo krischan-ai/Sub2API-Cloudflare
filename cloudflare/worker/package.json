@@ -15,9 +15,11 @@
         "check": "npm run typecheck && npm test && npm run check:wrangler"
     },
     "dependencies": {
-        "bcryptjs": "3.0.3"
+        "bcryptjs": "3.0.3",
+        "pg": "^8.13.1"
     },
     "devDependencies": {
+        "@types/pg": "^8.10.9",
         "typescript": "~5.6.3",
         "wrangler": "^4.65.0"
     }
